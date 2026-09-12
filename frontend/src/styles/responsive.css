@@ -1,0 +1,139 @@
+/* Responsive layout rules — mobile through large/TV screens.
+   Loaded after utilities.css/components.css so it can override them. */
+
+/* ---------- content width ceiling for large / TV screens ---------- */
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+}
+.content-area {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ---------- mobile top bar / bottom nav (hidden by default; shown via media query) ---------- */
+.mobile-topbar { display: none; }
+.bottom-nav { display: none; }
+.mobile-menu-backdrop { display: none; }
+.mobile-menu-sheet { display: none; }
+
+/* ---------- large screens: a little more breathing room ---------- */
+@media (min-width: 1920px) {
+  .content-area { max-width: 1700px; }
+  .p-6 { padding: 2rem; }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1023px) {
+  .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-cols-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 767px) {
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4,
+  .grid-cols-6 {
+    grid-template-columns: 1fr;
+  }
+  .grid-cols-6.summary-header {
+    display: none;
+  }
+
+  /* Desktop sidebar is gone entirely on mobile — replaced by the top bar + bottom nav */
+  .sidebar-width {
+    display: none;
+  }
+
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .bottom-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    padding: 0.5rem 0.25rem;
+    overflow-x: auto;
+  }
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 10px;
+    font-weight: 600;
+    flex: 1;
+    min-width: 52px;
+    padding: 0.25rem 0;
+    white-space: nowrap;
+  }
+
+  /* Leaves room so page content never sits under the fixed bottom nav */
+  .bottom-nav-spacer {
+    height: 68px;
+  }
+
+  .mobile-menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 65;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .mobile-menu-sheet {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 70;
+    padding: 1.25rem;
+    border-radius: 0 0 1rem 1rem;
+  }
+
+  .content-area {
+    padding-left: 0;
+  }
+
+  /* Transactions table -> stacked mini-cards */
+  .grid-cols-tx,
+  .grid-cols-tx7 {
+    grid-template-columns: 1fr;
+    row-gap: 0.25rem;
+  }
+  .grid-cols-tx.tx-header,
+  .grid-cols-tx7.tx-header {
+    display: none;
+  }
+  .tx-amount-mobile {
+    text-align: left !important;
+  }
+
+  .tx-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-topbar { display: none !important; }
+  .bottom-nav { display: none !important; }
+  .mobile-menu-backdrop { display: none !important; }
+  .mobile-menu-sheet { display: none !important; }
+  .bottom-nav-spacer { display: none; }
+}

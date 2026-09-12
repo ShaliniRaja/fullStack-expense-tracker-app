@@ -1,0 +1,14 @@
+/* Component-specific rules that go beyond plain utilities. */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.modal-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
